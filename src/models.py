@@ -12,8 +12,10 @@ class Register(Base):
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True, nullable=False)
-    username = Column(String(250), nullable=False)
+    name = Column(String(50), nullable=False)
+    surname = Column(String(50), nullable=False)
     email = Column(String(250), nullable=False, unique=True)
+    username = Column(String(25), nullable=False)
     password = Column(String(25), nullable=False)
     # favorites = relationship('Favorites', backref='user', lazy=True)
 
@@ -22,9 +24,10 @@ class Login(Base):
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True, nullable=False)
-    user = Column(String(250), nullable=False)
+    username = Column(String(25), nullable=False)
     email = Column(String(250), nullable=False, unique=True)
-    password = Column(String(25), ForeignKey('user.id'), nullable=False)
+    password = Column(String(25), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'), nullable=False) 
 
 class User(Base):
     __tablename__ = 'user'
